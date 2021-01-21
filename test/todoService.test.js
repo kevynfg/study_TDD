@@ -43,21 +43,13 @@ describe('todoService', () => {
     });
   });
   describe('#create', () => {
-    const mockDatabase = [
-      {
-        name: 'O Batman',
-        age: 87,
-        meta: { revision: 0, created: 1611186515251, version: 0 },
-        $loki: 1,
-      },
-    ];
-
     let todoService;
     beforeEach(() => {
       //dependencies é para validar testes que já estavam feitos e funcionando
+      //e simular o todoRepository (espiando os metodos dele)
       const dependencies = {
         todoRepository: {
-          list: sandbox.stub().returns(mockDatabase),
+          create: sandbox.stub().returns(true),
         },
       };
       todoService = new TodoService(dependencies);
